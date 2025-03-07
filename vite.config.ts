@@ -17,12 +17,12 @@ export default defineConfig({
         theme_color: "#646cff",
         icons: [
           {
-            src: "/weather.jpg",
+            src: "weather.jpg",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "/weather.jpg",
+            src: "weather.jpg",
             sizes: "512x512",
             type: "image/png",
           },
