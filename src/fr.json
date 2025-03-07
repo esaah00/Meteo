@@ -1,0 +1,14 @@
+{
+  "weatherAppTitle": "Application Météo",
+  "searchPlaceholder": "Rechercher une ville...",
+  "temperature": "Température",
+  "humidity": "Humidité",
+  "wind": "Vent",
+  "windSpeed": "Vitesse du vent",
+  "weatherToday": "Météo App",
+  "searchCity": "Rechercher (Ville)",
+  "errorFetchingData": "Erreur lors de la récupération des données",
+  "cityNotFound": "Ville non trouvée. Veuillez entrer une ville valide.",
+  "validCityCountry": "Veuillez entrer une ville valide et éventuellement un état ou un pays.",
+  "cityForecasrNotfound": "Prévisions météo de la ville ne sont pas bonnes"
+}

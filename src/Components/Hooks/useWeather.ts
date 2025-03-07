@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import translate from "../../fr.json";
 
 interface WeatherData {
   main: {
@@ -16,6 +17,18 @@ interface WeatherData {
   cod: number;
 }
 
+interface ForecastData {
+  list: {
+    dt_txt: string;
+    main: {
+      temp: number;
+    };
+    weather: {
+      icon: string;
+    }[];
+  }[];
+}
+
 const fetchWeather = async (
   city: string,
   country?: string
@@ -26,7 +39,22 @@ const fetchWeather = async (
   }&units=Metric&appid=${API_KEY}`;
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error("City not found. Please enter a valid city.");
+    throw new Error(translate.cityNotFound);
+  }
+  return response.json();
+};
+
+const fetchForecast = async (
+  city: string,
+  country?: string
+): Promise<ForecastData> => {
+  const API_KEY = "a5f5160760d24e8a7c944d52cc2c9cc9";
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}${
+    country ? `,${country}` : ""
+  }&units=Metric&appid=${API_KEY}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(translate.cityForecasrNotfound);
   }
   return response.json();
 };
@@ -40,13 +68,24 @@ const useWeather = () => {
     queryKey: ["weather", city, country],
     queryFn: () => fetchWeather(city, country),
     staleTime: 50000,
-    enabled: false,
+    enabled: !!city,
+  });
+
+  const {
+    data: forecastData,
+    isLoading: isForecastLoading,
+    isError: isForecastError,
+  } = useQuery<ForecastData, Error>({
+    queryKey: ["forecast", city, country],
+    queryFn: () => fetchForecast(city, country),
+    staleTime: 50000,
+    enabled: !!city,
   });
 
   const handleSearch = (inputValue: string) => {
     const regex = /^[a-zA-Z\s]+(,\s*[a-zA-Z\s]+)?$/;
     if (!regex.test(inputValue)) {
-      setError("Please enter a valid city and optionally a state or country.");
+      setError(translate.validCityCountry);
       return;
     }
 
@@ -56,7 +95,16 @@ const useWeather = () => {
     refetch();
   };
 
-  return { data, isLoading, isError, error, handleSearch };
+  return {
+    data,
+    isLoading,
+    isError,
+    error,
+    handleSearch,
+    forecastData,
+    isForecastLoading,
+    isForecastError,
+  };
 };
 
 export default useWeather;

@@ -1,10 +1,11 @@
-import clear from "../assets/clear.png";
-import cloud from "../assets/cloud.png";
-import drizzle from "../assets/drizzle.png";
-import humidityIcon from "../assets/humidity.png";
-import rain from "../assets/rain.png";
-import snow from "../assets/snow.png";
-import windIcon from "../assets/wind.png";
+import clear from "../../assets/clear.png";
+import cloud from "../../assets/cloud.png";
+import drizzle from "../../assets/drizzle.png";
+import humidityIcon from "../../assets/humidity.png";
+import rain from "../../assets/rain.png";
+import snow from "../../assets/snow.png";
+import windIcon from "../../assets/wind.png";
+import translate from "../../fr.json";
 
 interface WeatherDataProps {
   data: {
@@ -63,14 +64,14 @@ const WeatherData: React.FC<WeatherDataProps> = ({ data }) => {
           <div className="humidity-percentage">
             {Math.floor(data.main.humidity)} %
           </div>
-          <div className="text">Humidity</div>
+          <div className="text">{translate.humidity}</div>
         </div>
       </div>
       <div className="element">
         <img src={windIcon} alt="" className="icon" />
         <div className="data">
           <div className="wind-rate">{Math.floor(data.wind.speed)} km/h</div>
-          <div className="text">Wind Speed</div>
+          <div className="text">{translate.windSpeed}</div>
         </div>
       </div>
     </div>
