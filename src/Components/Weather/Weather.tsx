@@ -56,13 +56,12 @@ const Weather: React.FC = () => {
             onKeyDown={handleKeyDown}
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => setIsInputFocused(false)}
-            value={inputValue} // Bind input value to state
-            onChange={handleInputChange} // Handle input changes
+            value={inputValue}
+            onChange={handleInputChange}
           />
           {inputValue && (
             <SlClose className="close-inside" onClick={handleClose} />
           )}{" "}
-          {/* Conditionally render close icon */}
         </div>
 
         <div
