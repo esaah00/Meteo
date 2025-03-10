@@ -33,7 +33,7 @@ const fetchWeather = async (
   city: string,
   country?: string
 ): Promise<WeatherData> => {
-  const API_KEY = "a5f5160760d24e8a7c944d52cc2c9cc9";
+  const API_KEY = "";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}${
     country ? `,${country}` : ""
   }&units=Metric&appid=${API_KEY}`;
@@ -48,7 +48,7 @@ const fetchForecast = async (
   city: string,
   country?: string
 ): Promise<ForecastData> => {
-  const API_KEY = "a5f5160760d24e8a7c944d52cc2c9cc9";
+  const API_KEY = "";
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}${
     country ? `,${country}` : ""
   }&units=Metric&appid=${API_KEY}`;
